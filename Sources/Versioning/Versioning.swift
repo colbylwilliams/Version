@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct Version {
+public struct Version {
     
     #if DEBUG
-    static func reset() {
+    public static func reset() {
         UserDefaults.standard.removeObject(forKey: versionTrailKey)
     }
     #endif
@@ -28,7 +28,7 @@ struct Version {
     fileprivate static var _firstLaunchForVersion = false
     fileprivate static var _firstLaunchForBuild = false
 
-    static var firstLaunchEver: Bool {
+    public static var firstLaunchEver: Bool {
         get {
             assert(trackCalled, "You must call Version.track() before accessing this property")
             return _firstLaunchEver
@@ -36,7 +36,7 @@ struct Version {
         set { _firstLaunchEver = newValue }
     }
     
-    static var firstLaunchForVersion: Bool {
+    public static var firstLaunchForVersion: Bool {
         get {
             assert(trackCalled, "You must call Version.track() before accessing this property")
             return _firstLaunchForVersion
@@ -44,7 +44,7 @@ struct Version {
         set { _firstLaunchForVersion = newValue }
     }
     
-    static var firstLaunchForBuild: Bool {
+    public static var firstLaunchForBuild: Bool {
         get {
             assert(trackCalled, "You must call Version.track() before accessing this property")
             return _firstLaunchForBuild
@@ -52,7 +52,7 @@ struct Version {
         set { _firstLaunchForBuild = newValue }
     }
     
-    static func track() {
+    public static func track() {
         
         var needsSync = false
         
@@ -99,71 +99,71 @@ struct Version {
         }
     }
     
-    static var currentBuild: String {
+    public static var currentBuild: String {
         return Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String ?? "unknown"
     }
     
-    static var currentVersion: String {
+    public static var currentVersion: String {
         return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
     }
     
-    static var previousBuild: String? {
+    public static var previousBuild: String? {
         assert(trackCalled, "You must call Version.track() before accessing this property")
         let count = versionTrail[buildsKey]?.count ?? 0
         return count >= 2 ? versionTrail[buildsKey]?[count - 2] : nil
     }
     
-    static var previousVersion: String? {
+    public static var previousVersion: String? {
         assert(trackCalled, "You must call Version.track() before accessing this property")
         let count = versionTrail[versionsKey]?.count ?? 0
         return count >= 2 ? versionTrail[versionsKey]?[count - 2] : nil
     }
 
-    static var firstInstalledBuild: String? {
+    public static var firstInstalledBuild: String? {
         assert(trackCalled, "You must call Version.track() before accessing this property")
         return versionTrail[buildsKey]?.first
     }
     
-    static var firstInstalledVersion: String? {
+    public static var firstInstalledVersion: String? {
         assert(trackCalled, "You must call Version.track() before accessing this property")
         return versionTrail[versionsKey]?.first
     }
 
-    static var buildHistory: [String] {
+    public static var buildHistory: [String] {
         assert(trackCalled, "You must call Version.track() before accessing this property")
         return versionTrail[buildsKey] ?? []
     }
     
-    static var versionHistory: [String] {
+    public static var versionHistory: [String] {
         assert(trackCalled, "You must call Version.track() before accessing this property")
         return versionTrail[versionsKey] ?? []
     }
     
-    static func firstLaunch(forBuild build: String) -> Bool {
+    public static func firstLaunch(forBuild build: String) -> Bool {
         assert(trackCalled, "You must call Version.track() before calling this function")
         return currentBuild == build && firstLaunchForBuild
     }
     
-    static func firstLaunch(forVersion version: String) -> Bool {
+    public static func firstLaunch(forVersion version: String) -> Bool {
         assert(trackCalled, "You must call Version.track() before calling this function")
         return currentVersion == version && firstLaunchForVersion
     }
     
-    static func onFirstLaunch(forBuild build: String, _ callback: (() -> Void)) {
+    public static func onFirstLaunch(forBuild build: String, _ callback: (() -> Void)) {
         assert(trackCalled, "You must call Version.track() before calling this function")
         if firstLaunch(forBuild: build) {
             callback()
         }
     }
     
-    static func onFirstLaunch(forVersion version: String, _ callback: (() -> Void)) {
+    public static func onFirstLaunch(forVersion version: String, _ callback: (() -> Void)) {
         assert(trackCalled, "You must call Version.track() before calling this function")
         if firstLaunch(forVersion: version) {
             callback()
         }
     }
     
-    static var info: String {
+    public static var info: String {
         assert(trackCalled, "You must call Version.track() before accessing this property")
         return """
             Version:
