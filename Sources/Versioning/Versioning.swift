@@ -1,6 +1,6 @@
 //
-//  Version.swift
-//  Version
+//  Versioning.swift
+//  Versioning
 //
 //  Created by Colby L Williams on 10/7/19.
 //  Copyright © 2019 Colby L Williams. All rights reserved.
