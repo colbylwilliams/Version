@@ -37,8 +37,10 @@ Version.onFirstLaunch(forVersion: "1.0.11") { print("First time Version 1.0.11 l
 
 
 ## Contributors
-* [Colby Williams](https://github.com/colbylwilliams)
-* _Originally inspired by [GBVersionTracking](https://github.com/lmirosevic/GBVersionTracking), then I wrote a (Xamarin version)[https://github.com/colbylwilliams/VersionTrackingPlugin], and eventually ported that to Swift ¯\_(ツ)_/¯_
+
+Made with ❤️ by  [Colby Williams](https://github.com/colbylwilliams)
+  
+ _Originally inspired by [GBVersionTracking](https://github.com/lmirosevic/GBVersionTracking), which I wrote a [Xamarin version](https://github.com/colbylwilliams/VersionTrackingPlugin) for, and ported that to Swift_
 
 
 #### License
